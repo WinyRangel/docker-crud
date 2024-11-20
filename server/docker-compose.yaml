@@ -1,0 +1,17 @@
+services:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-servidor
+    container_name: docker-servidor
+    ports:
+      - "4004:4000"
+    enviroment: 
+      - DB_MONGO=mongodb+srv://winy:Dulce123@cluster0.xz67vmi.mongodb.net/productos
+    volumes:
+      - .:/app
+      - /usr/app/node_modules
+    networks:
+      - wdmr
+networks:
+  wdmr:
