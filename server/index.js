@@ -7,12 +7,17 @@ const app = express();
 
 // Conectamos a la BD
 conectarDB();
-app.use(cors())
-
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/productos', require('./routes/producto'));
 
-app.listen(4000, () => {
-    console.log('El servidor esta corriendo perfectamente')
-})
+// Inicia el servidor solo si no está en entorno de prueba
+const PORT = 4000;
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log('El servidor está corriendo perfectamente');
+    });
+}
+
+module.exports = app; // Exportar para pruebas
