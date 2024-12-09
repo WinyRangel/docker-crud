@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servidor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servidor
+  template:
+    metadata:
+      labels:
+        app: servidor
+    spec:
+      containers:
+      - image: winyrangel/servidor:latest
+        name: servidor
+        ports:
+        - containerPort: 4000
+        env:
+          - name: DB_MONGO
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: DB_MONGO

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-ang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-ang
+  template:
+    metadata:
+      labels:
+        app: app-ang
+    spec:
+      containers:
+        - name: app-ang
+          image: winyrangel/client:latest
+          ports:
+            - containerPort: 80
